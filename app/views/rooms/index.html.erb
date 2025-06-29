@@ -1,0 +1,39 @@
+
+<%= render "shared/ransack" %>
+
+<div class="room-index-main container my-5">
+
+  <h5 class="border-bottom border-warning mb-4"><%= @rooms.count %>件が見つかりました</h5>
+
+  <div class="row">
+    <% @rooms.each do |room| %>
+      <div class="col-sm-12 col-md-6 col-lg-4">
+        <div class="card room-index-card mb-4">
+          <% if room.image.blank? %>
+            <td><%= image_tag "default-image-4e0ac6b8d01335b5b22fe6586af13644ae51dddb6aeabf35b9174e80f13cd09d.png", alt: "ホテルの画像", class: "card-img-top room-index-card-img-top" %></td>
+          <% else %>
+            <td><%= image_tag(room.image.variant(gravity: :center), alt: "ホテルの画像", class: "card-image-top room-index-card-img-top") %></td>
+          <% end %>
+
+          <div class="room-index-textarea p-3">
+            <div class="room-index-card-text-header border-bottom border-warning mb-3 pb-2">
+              <h4 class="card-text"><%= room.name %></h4>
+            </div>
+              <p class="room-index-introduction fs-15"><%= truncate(room.introduction, length: 70) %></p>
+            <div class="room-index-areas text-muted mb-3">
+              <i class="bi bi-geo-alt-fill"></i>
+              <p class="card-text ml-1"><%= room.address %></p>
+            </div>
+            <div class="room-index-card-charges mb-2">
+              <h4 class="card-text room-index-card-charges-charge text-danger"><%= "¥#{room.charge.to_s(:delimited)}~" %></h4>
+              <span class="card-text room-index-card-charges-days ml-2">1泊1名様</span>
+            </div>
+              <%= link_to "詳細はこちら",room ,class: "btn btn-info btn-block" %></div>
+          </div>
+        </div>
+
+      <% end %>
+    </div>
+</div>
+    
+

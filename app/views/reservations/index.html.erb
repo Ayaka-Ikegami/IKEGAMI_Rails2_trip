@@ -1,0 +1,60 @@
+<div class="reservation-show-body container my-5">
+
+<div class="reservation-show-header">
+  <h2>予約済み一覧</h2>
+</div>
+
+<div class="table-box">
+  <table class="table reservation-table mt-4">
+    <thead class="thead-light">
+      <tr>
+        <th>画像</th>
+        <th>施設名</th>
+        <th>紹介</th>
+        <th>合計料金</th>
+        <th>チェックイン</th>
+        <th>チェックアウト</th>
+        <th>予定確定日時</th>
+        <th></th>
+      </tr>
+    </thead>
+
+  <tbody class="reservation-show-tbody">
+    <% if @reservations.empty? %>
+      <tr>
+        <td colspan="9">現在予約はありません</td>
+      </tr>
+    <% else %>
+      <% @reservations.each do |reservation| %>
+        <tr>
+        <% if reservation.room.image.blank? %>
+          <td><%= image_tag "default-image-4e0ac6b8d01335b5b22fe6586af13644ae51dddb6aeabf35b9174e80f13cd09d.png", size: "100x65", alt: "施設の画像", class: "reservation-show-image" %></td>
+        <% else %>
+          <td><%= image_tag(reservation.room.image.variant(gravity: :center, resize:"100x65^", crop:"100x65+0+0"), alt: "施設の画像", class: "reservation-show-image") %></td>
+        <% end %>
+          <td><%= link_to truncate(reservation.room.name, length: 15), room_path(reservation.room.id) %></td>
+          <td><%= truncate(reservation.room.introduction, length: 25) %></td>
+          <td><%= "¥#{reservation.total_charge.to_s(:delimited)}" %></td>
+          <td><%= l reservation.check_in_day %></td>
+          <td><%= l reservation.check_out_day %></td>
+          <td><%= l reservation.created_at, format: :long %></td>
+          <td>
+            <div class="dropdown">
+              <i class="bi bi-caret-down-fill" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+              <div class="dropdown-menu">
+                <%= link_to "予約を取り消す", reservation_path(reservation.id), method: :delete, data: { confirm: "予約をキャンセルしますか？"}, class: "dropdown-item text-danger" %>
+              </div>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+  </table>
+</div>
+
+<% if flash[:notice] %>
+  <p class="notice"><%= flash[:notice] %></p>
+<% end %>
+
+</div>

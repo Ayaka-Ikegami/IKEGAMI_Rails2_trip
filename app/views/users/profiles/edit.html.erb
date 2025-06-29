@@ -1,0 +1,50 @@
+<div class="user-main container my-5">
+
+<div class="card">
+<h2 class="mt-4">プロフィールの編集</h2>
+<div class="card-body">
+
+<%= form_with model: @user, url: users_profile_path, multipart: true do |f| %>
+
+  <div class="field my-4">
+    <label class="profile-avatar-area">
+      <span class="profile-avatar-label">アイコン画像：</span>
+      <span class="profile-avatar-file">画像をアップロード</span>
+      <%= f.file_field :avatar, class: "hidden" %>
+    </label>
+  </div>
+
+  <div class="field my-4">
+    <div class="edit-label-area">
+      <label for="user_user_name" >ユーザーネーム：</label>
+    </div>
+    <%= f.text_field :user_name, placeholder: "ユーザーネームを記入", class: "form-control" %>
+    <% @user.errors.where(:user_name).each do |error| %>
+      <p class="error-text"><%= error.full_message %></p>
+    <% end %>
+  </div>
+
+  <div class="field my-4">
+    <div class="edit-label-area">
+      <label for="user_profile" >自己紹介：</label>
+    </div>
+    <%= f.text_area :profile, placeholder: "100文字以内で記入", class: "form-control" %>
+    <% @user.errors.where(:profile).each do |error| %>
+      <p class="error-text"><%= error.full_message %></p>
+    <% end %>
+  </div>
+
+  <div class="actions my-4">
+    <%= f.submit "保存する", class:"form-control btn-info mb-3" %>
+    <%= link_to "戻る", users_profile_path, class: "form-control btn-outline-info text-center" %>
+  </div>
+<% end %>
+
+</div>
+</div>
+
+  <% if flash[:alert] %>
+    <p class="alert"><%= flash[:alert] %></p>
+  <% end %>
+
+</div>

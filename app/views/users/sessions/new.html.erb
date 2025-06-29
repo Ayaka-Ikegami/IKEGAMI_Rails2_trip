@@ -1,0 +1,30 @@
+<div class="user-main container my-5">
+
+<div class="card">
+
+<h2 class="mt-4">ログイン</h2>
+
+<div class="card-body">
+<%= form_for(@user, url: {controller: 'sessions', action: 'create'}) do |f| %>
+  <div class="field my-4">
+    <label for="user_email" %>メールアドレス</label>
+    <%= f.text_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレスを入力", class: "form-control" %>
+  </div>
+
+  <div class="field my-4">
+    <label for="user_password" %>パスワード</label>
+    <%= f.text_field :password, type: "password", autocomplete: "current-password", placeholder: "パスワードを入力", class: "form-control" %>
+  </div>
+
+  <div class="actions my-4">
+    <%= f.submit "ログイン", class: "form-control btn-info" %>
+  </div>
+<% end %>
+
+  <div class="register-new">
+    <%= link_to "新規登録はこちら", new_user_registration_path, class: "btn-register-new" %>
+  </div>
+
+</div>
+</div>
+</div>

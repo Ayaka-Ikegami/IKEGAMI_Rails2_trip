@@ -1,0 +1,27 @@
+.user-main h2 {
+  text-align: center;
+}
+
+.form-esse::after {
+  content: "*";
+  color: rgb(255, 0, 0);
+}
+
+.edit-label-area {
+  display: flex;
+  align-items: center;
+}
+
+.edit-password {
+  font-size: 13px;
+}
+
+.edit-password-esse {
+  color: rgb(255, 0, 0);
+}
+
+.error-text {
+  color: rgb(255, 0, 0);
+  font-size: 12px;
+  font-style: italic;
+}

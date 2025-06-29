@@ -1,0 +1,74 @@
+<div class="reservation-confirm-main container my-5">
+
+  <div class="reservation-confirm-links mb-4">
+    <%= link_to "←ホテル詳細へ戻る", controller: 'rooms', action: 'show', id: @reservation.room.id, class: "fs-17" %>
+  </div>
+
+  <div class="reservation-confirm-check-text">
+    <h5>予約内容を確認してください</h5>
+  </div>
+
+  <div class="reservation-confirm-cards">
+    <div class="reservation-confirm-cards-area">
+      <div class="row">
+
+        <div class="col-sm-12 col-lg-6">
+          <div class="reservation-confirm-card-image card mb-4">
+            <% if @reservation.room.image.blank? %> 
+              <%= image_tag "default-image-4e0ac6b8d01335b5b22fe6586af13644ae51dddb6aeabf35b9174e80f13cd09d.png", alt: "施設の画像", class: "reservation-confirm-image card-img" %>
+            <% else %>
+              <%= image_tag(@reservation.room.image.variant(gravity: :center), alt: "施設の画像", class: "reservation-confirm-image card-img") %>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="col-sm-12 col-lg-6">
+          <div class="reservation-confirm-room-information">
+            <h4><%= @reservation.room.name %></h4>
+            <div class="reservation-confirm-areas text-muted mb-2">
+              <i class="bi bi-geo-alt-fill"></i>
+              <p class="card-text ml-1"><%= @reservation.room.address %></p>
+            </div>
+          </div>
+
+          <%= form_with model: @reservation, local: true do |f| %>
+            <div class="table reservation-confirm-card-text card">
+            
+              <table class="reservation-confirm-table">
+                <tr><th>チェックイン</th><td align="right"><%= l @reservation.check_in_day %></td></tr>
+                <tr><th>チェックアウト</th><td align="right"><%= l @reservation.check_out_day %></td></tr>
+                <tr><th>人数</th><td align="right"><%= @reservation.people %>人</td></tr>
+                <tr><th>宿泊日数</th><td align="right"><%= @total_nights %>泊<%= @total_days %>日</td></tr>
+                <tr><th>料金合計</th><td align="right" class="text-danger"><%= "¥#{@total_charge}" %></td></tr>
+              </table>
+
+                <%= f.hidden_field :user_id, value: @user_id %>
+                <%= f.hidden_field :room_id, value: @room.id %>
+                <%= f.hidden_field :people, value: @reservation.people %>
+                <%= f.hidden_field :total_nights, value: @total_nights %>
+                <%= f.hidden_field :total_days, value: @total_days %>
+                <%= f.hidden_field :total_charge, value: @total_charge %>
+                <%= f.hidden_field :check_in_day, value: @reservation.check_in_day %>
+                <%= f.hidden_field :check_out_day, value: @reservation.check_out_day %>
+
+            </div>
+
+              <div class="reservation-confirm-submit pt-4">
+                <%= f.submit "予約を確定する", class:"form-control btn btn-warning btn-block" %>
+                <%= link_to "戻る", room_path(@room.id), class: "form-control btn btn-outline-info btn-block text-center" %>
+              </div>
+
+          <% end %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <% if flash[:alert] %>
+    <p class="alert"><%= flash[:alert] %></p>
+  <% end %>
+
+  <%= render 'shared/error_messages', object: @reservation %>
+
+</div>

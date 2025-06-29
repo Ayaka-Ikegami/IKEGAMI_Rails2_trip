@@ -1,0 +1,112 @@
+<div class="top-main">
+  <section class="top-section-1">
+    <div class="top-section-1-background">
+      <div class="background-circle circle-1"></div>
+      <div class="background-circle circle-2"></div>
+      <div class="background-circle circle-3"></div>
+    </div>
+    <div class="top-section-1-container container">
+      <div class="card top-section1-card p-3 w-75">
+      <h4 class="text-center border-bottom pb-4 mt-3">どこに行く？</h4>
+      <div class="top-search-group p-4">
+        <%= search_form_for @q, url: rooms_path do |f| %>
+          <%= f.search_field :address_or_introduction_cont, placeholder: "エリア名を入力", class: "form-control" %>
+          <%= f.submit '検索', class: "btn btn-success btn-block mt-4" %>
+        <%= link_to "すべてのホテルを見る", rooms_path, class: "btn btn-outline-success btn-block mt-2" %>
+        <% end %>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="top-section-2">
+    <h2 class="top-section-2-text pt-5 pl-4">おすすめのエリア</h2>
+
+      <div class="area-all m-5">
+        <div class="row">
+
+          <div class="col-sm-6 col-lg-3">
+            <div class="area-tokyo card mb-4">
+              <img class="card-img-top top-card-img-top" src="https://rails-02-sample.herokuapp.com/assets/home/recommend-area/tokyo.jpg" alt="東京の風景写真">
+              <div class="card-body">
+                <div class="top-card-area-name">
+                  <h1 class="card-title">東京</h1>
+                  <div class="top-card-area-name-en">
+                    <i class="bi bi-geo-alt-fill"></i>
+                    <h5 class="card-text ml-1">Tokyo</h5>
+                  </div>
+                </div>
+                <%= search_form_for @q, url: rooms_path do |f| %>
+                  <%= f.search_field :address_or_introduction_cont, value: "東京", class: "hidden" %>
+                  <%= f.submit 'ホテルを探す', class: "btn btn-outline-info btn-block mt-3" %>
+                <% end %> 
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-6 col-lg-3">
+            <div class="area-osaka card mb-4">
+              <img class="card-img-top top-card-img-top" src="https://rails-02-sample.herokuapp.com/assets/home/recommend-area/osaka.jpg" alt="大阪の風景写真">
+              <div class="card-body">
+                <div class="top-card-area-name">
+                  <h1 class="card-title">大阪</h1>
+                  <div class="top-card-area-name-en">
+                    <i class="bi bi-geo-alt-fill"></i>
+                    <h5 class="card-text ml-1">Osaka</h5>
+                  </div>
+                </div>
+                <%= search_form_for @q, url: rooms_path do |f| %>
+                  <%= f.search_field :address_or_introduction_cont, value: "大阪", class: "hidden" %>
+                  <%= f.submit 'ホテルを探す', class: "btn btn-outline-info btn-block mt-3" %>
+                <% end %> 
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-6 col-lg-3">
+            <div class="area-kyoto card mb-4">
+              <img class="card-img-top top-card-img-top" src="https://rails-02-sample.herokuapp.com/assets/home/recommend-area/kyoto.jpg" alt="京都の風景写真">
+              <div class="card-body">
+                <div class="top-card-area-name">
+                  <h1 class="card-title">京都</h1>
+                  <div class="top-card-area-name-en">
+                    <i class="bi bi-geo-alt-fill"></i>
+                    <h5 class="card-text ml-1">Kyoto</h5>
+                  </div>
+                </div>
+                <%= search_form_for @q, url: rooms_path do |f| %>
+                  <%= f.search_field :address_or_introduction_cont, value: "京都", class: "hidden" %>
+                  <%= f.submit 'ホテルを探す', class: "btn btn-outline-info btn-block mt-3" %>
+                <% end %> 
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-6 col-lg-3">
+            <div class="area-sapporo card mb-4">
+              <img class="card-img-top top-card-img-top" src="https://rails-02-sample.herokuapp.com/assets/home/recommend-area/sapporo.jpg" alt="札幌の風景写真">
+              <div class="card-body">
+                <div class="top-card-area-name">
+                  <h1 class="card-text">札幌</h1>
+                  <div class="top-card-area-name-en">
+                    <i class="bi bi-geo-alt-fill"></i>
+                    <h5 class="card-text ml-1">Sapporo</h5>
+                  </div>
+                </div>
+                <%= search_form_for @q, url: rooms_path do |f| %>
+                  <%= f.search_field :address_or_introduction_cont, value: "札幌", class: "hidden" %>
+                  <%= f.submit 'ホテルを探す', class: "btn btn-outline-info btn-block mt-3" %>
+                <% end %> 
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+  </section>
+  
+  <% if flash[:notice] %>
+    <p class="notice"><%= flash[:notice] %></p>
+  <% end %>
+
+</div>

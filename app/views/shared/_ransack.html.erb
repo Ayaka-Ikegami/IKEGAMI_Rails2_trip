@@ -1,0 +1,9 @@
+<div class="search-group p-4">
+  <%= search_form_for @q, url: rooms_path do |f| %>
+    <div class="search-contents container">
+      <%= f.search_field :address_cont, placeholder: 'エリア名を入力', class: "form-control mr-2" %>
+      <%= f.search_field :name_or_introduction_cont, placeholder: "キーワード名を入力", class: "form-control mr-4" %>
+      <%= f.submit '検索', class: "btn btn-outline-success px-4" %>
+    </div>
+  <% end %> 
+</div>

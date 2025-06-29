@@ -1,0 +1,56 @@
+.user-show-main {
+  text-align: center;
+}
+
+.show-contents {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  border-bottom: 1px
+}
+
+.user-show-link {
+  width: 160px;
+}
+
+.user-show-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user-show-contents td {
+  height: 55px;
+  padding-left: 10px;
+}
+
+.user-show-profile-avatar {
+  padding: 0;
+}
+
+.profile-avatar-area {
+  display: flex;
+  align-items: center;
+}
+
+.profile-avatar-label {
+  position: relative;
+}
+
+.profile-avatar-file {
+  padding: 4px 35px;
+  background-color: rgb(231, 231, 231);
+  border: 1px solid gray;
+  border-radius: 5px;
+  position: absolute;
+  left: 150px;
+}
+
+.profile-avatar-file:active {
+  background-color: rgb(195, 195, 195);
+}
+
+.profile-icon {
+  border-radius: 50%;
+  border: 1px solid gray;
+}
