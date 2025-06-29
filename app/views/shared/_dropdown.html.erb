@@ -1,23 +1,23 @@
-  <% if current_user.avatar.blank? %>
-    <a href="/users/profiles/show"><%= image_tag "default-avatar-7a6cbfd7993e89f24bfc888f4a035a83c6f1428b8bdc47eed9095f2799a40153.png", size: "45x45", alt: "アイコン画像", class: "profile-icon header-icon" %></a>
-  <% else %>
-    <a href="/users/profiles/show"><%= image_tag(current_user.avatar.variant(gravity: :center, resize:"45x45^", crop:"45x45+0+0"), alt: "アイコン画像", class: "profile-icon header-icon") %></a>
-  <% end %>
-    <div class="btn-group dropdown ml-4">
-      <div class="btn btn-warning px-4"><%= current_user.user_name %></div>
-      <button class="btn btn-warning dropdown-toggle dropdown-toggle-split" id="btnOpenMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent">
-        <span class="sr-only">Toggle Dropdown</span>
-      </button>
-      <ul class="dropdown-menu" aria-labelledby="btnOpenMenu">
-        <h5 class="dropdown-header">ホテル</h5>
+<% if current_user.avatar.blank? %>
+  <a href="/users/profiles/show"><%= image_tag "default-avatar-7a6cbfd7993e89f24bfc888f4a035a83c6f1428b8bdc47eed9095f2799a40153.png", size: "45x45", alt: "アイコン画像", class: "profile-icon header-icon" %></a>
+<% else %>
+  <a href="/users/profiles/show"><%= image_tag(current_user.avatar.variant(gravity: :center, resize:"45x45^", crop:"45x45+0+0"), alt: "アイコン画像", class: "profile-icon header-icon") %></a>
+<% end %>
+  <div class="btn-group dropdown ml-4">
+    <div class="btn btn-warning px-4"><%= current_user.user_name %></div>
+    <button class="btn btn-warning dropdown-toggle dropdown-toggle-split" id="btnOpenMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent">
+      <span class="sr-only">Toggle Dropdown</span>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="btnOpenMenu">
+      <h5 class="dropdown-header">ホテル</h5>
         <li class="dropdown-item"><%= link_to "新規登録", new_room_path %></li>
         <li class="dropdown-item"><%= link_to "登録済み一覧", rooms_own_path %></li>
-        <li><hr class="dropdown-divider"></li>
-        <h5 class="dropdown-header">予約</h5>
+      <li><hr class="dropdown-divider"></li>
+      <h5 class="dropdown-header">予約</h5>
         <li class="dropdown-item"><%= link_to "予約済み一覧", reservations_path %></li>
-        <li><hr class="dropdown-divider"></li>
+      <li><hr class="dropdown-divider"></li>
         <li class="dropdown-item"><%= link_to "アカウント情報", users_account_path(current_user.id) %></li>
-        <li><hr class="dropdown-divider"></li>
+      <li><hr class="dropdown-divider"></li>
         <li class="dropdown-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
-      </ul>
-    </div>
+    </ul>
+  </div>
