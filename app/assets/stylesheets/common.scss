@@ -1,0 +1,57 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'M PLUS Rounded 1c', 'メイリオ', 'Meiryo', sans-serif;
+}
+
+.fs-17 {
+  font-size: 17px;
+}
+
+.fs-15 {
+  font-size: 15px;
+}
+
+.fs-13 {
+  font-size: 13px;
+}
+
+.fs-11 {
+  font-size: 11px;
+}
+
+.hidden {
+  display: none;
+}
+
+.error-lists {
+  list-style: none;
+}
+
+.notice {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: fit-content;
+  background-color: rgb(213, 0, 110);
+  border-radius: 5px;
+  box-shadow: 0 0 8px rgb(114, 0, 72);
+  color: #fff;
+  padding: 10px 50px;
+  z-index: 10;
+}
+
+.alert {
+  position: fixed;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: fit-content;
+  background-color: rgb(255, 54, 54);
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgb(58, 0, 0);
+  color: #fff;
+  padding: 10px 50px;
+  z-index: 10;
+}

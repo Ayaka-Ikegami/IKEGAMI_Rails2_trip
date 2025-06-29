@@ -1,0 +1,46 @@
+.reservation-show-body {
+  min-height: 450px;
+}
+
+.table-box {
+  overflow: auto;
+}
+
+.reservation-table {
+  background-color: #fff;
+  border: 1px solid rgba(164, 164, 164, 0.558);
+  margin-bottom: 0;
+}
+
+.reservation-table th {
+  white-space: nowrap;
+}
+
+.reservation-table td {
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.reservation-show-tbody {
+  height: 100px;
+}
+
+.reservation-show-image {
+  border-radius: 5px;
+}
+
+.reservation-confirm-links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.reservation-confirm-image {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+}
+
+.reservation-confirm-areas {
+  display: flex;
+}

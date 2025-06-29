@@ -1,0 +1,86 @@
+<div class="room-show-main container my-5">
+
+  <div class="room-show-links mb-4">
+    <%= link_to "←戻る", 'javascript:history. back()', class: "fs-17" %>
+      <% if user_signed_in? %>
+        <%if @room.current_user_id == current_user.id %>
+          <%= link_to "編集する", edit_room_path(@room.id), class: "btn btn-outline-info room-show-edit-button pr-2 pl-5" %>
+        <% end %>
+      <% end %>
+  </div>
+
+  <div class="room-show-cards">
+    <div class="room-show-cards-area">
+      <div class="row">
+
+        <div class="col-sm-12 col-lg-6">
+          <div class="room-show-card-image card mb-4">
+            <% if @room.image.blank? %>
+              <%= image_tag "default-image-4e0ac6b8d01335b5b22fe6586af13644ae51dddb6aeabf35b9174e80f13cd09d.png", alt: "施設の画像", class: "room-show-image card-img" %>
+            <% else %>
+              <%= image_tag(@room.image.variant(gravity: :center), alt: "施設の画像", class: "room-show-image card-img") %>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="col-sm-12 col-lg-6">
+          <div class="room-show-card-text card">
+            <div class="card-body">
+              <div class="room-show-card-text-header border-bottom border-warning mb-3 pb-3">
+                <h5 class="card-text"><%= @room.name %></h5>
+                <div class="room-show-card-charge">
+                  <span class="card-text">1泊1名様</span>
+                  <h5 class="card-text text-danger"><%= "¥#{@room.charge.to_s(:delimited)}~" %></h5>
+                </div>
+              </div>
+              <div class="room-show-areas text-muted mb-3">
+                <i class="bi bi-geo-alt-fill"></i>
+                <p class="card-text ml-1"><%= @room.address %></p>
+              </div>
+              <p class="room-show-introduction fs-15"><%= @room.introduction %></p>
+
+              <% if user_signed_in? %>
+                <div class="room-show-reservation-area card mt-5 mb-2 mx-2 p-3">
+                  <div class="room-show-reservation-titles border-bottom border-warning mt-3 mx-4 pb-2">
+                    <i class="bi bi-calendar-check mr-2"></i>
+                    <h5 class=>予約する</h5>
+                  </div>
+
+                  <%= form_with model: @reservation, url: room_confirm_reservation_path(@room.id), method: :post, local: true do |f| %>
+                    <div class="card-body room-show-reservation-form p-3">
+                      <div class="form-group">
+                        <label for="reservation_check_in_day" class="form-esse fs-13">チェックイン</label>
+                        <%= f.date_field :check_in_day, min: Time.zone.now, class: "form-control calender reservation-form" %>
+                      </div>
+                      <div class="form-group">
+                        <label for="reservation_check_out_day" class="form-esse fs-13">チェックアウト</label>
+                        <%= f.date_field :check_out_day, min: Time.zone.now, class: "form-control calender reservation-form" %>
+                      </div>
+                      <div class="form-group">
+                        <label for="reservation_people" class="form-esse fs-13">宿泊人数</label>
+                        <%= f.number_field :people, placeholder: "人数を入力", class: "form-control reservation-form" %>
+                      </div>
+                        <%= f.hidden_field :current_user_id, value: current_user.id %>
+                        <%= f.hidden_field :room_id, value: @room.id %>
+                    </div>
+
+                      <div class="form-group p-2">
+                        <%= f.submit "予約する", class:"form-control btn-warning btn-block" %>
+                      </div>
+
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <% if flash[:alert] %>
+    <p class="alert"><%= flash[:alert] %></p>
+  <% end %>
+
+</div>

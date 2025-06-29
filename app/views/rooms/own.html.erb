@@ -1,0 +1,58 @@
+<div class="room-own-body container my-5">
+
+<div class="room-own-header">
+  <h2>ホテル登録済み一覧</h2>
+  <%= link_to "新しく登録する", new_room_path, class: "btn btn-outline-info" %>
+</div>
+
+<div class="table-box">
+<table class="table room-table mt-4">
+  <thead class="thead-light">
+    <tr>
+      <th>画像</th>
+      <th>施設名</th>
+      <th>紹介文</th>
+      <th>料金</th>
+      <th>作成日</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody class="room-own-tbody">
+    <% if @rooms.empty? %>
+      <tr>
+        <td colspan="9">現在登録しているホテルはありません</td>
+      </tr>
+    <% else %>
+      <% @rooms.each do |room| %>
+        <tr>
+          <% if room.image.blank? %>
+            <td><%= image_tag "default-image-4e0ac6b8d01335b5b22fe6586af13644ae51dddb6aeabf35b9174e80f13cd09d.png", size: "100x65", alt: "施設の画像", class: "room-own-image" %></td>
+          <% else %>
+            <td><%= image_tag(room.image.variant(gravity: :center, resize:"100x65^", crop:"100x65+0+0"), alt: "施設の画像", class: "room-own-image") %></td>
+          <% end %>
+          <td><%= link_to truncate(room.name, length: 15), room_path(room.id), data: {"turbolinks" => false} %></td>
+          <td><%= truncate(room.introduction, length: 25) %></td>
+          <td><%= "¥#{room.charge.to_s(:delimited)}~" %></td>
+          <td><%= l room.created_at %></td>
+          <td>
+            <div class="dropdown">
+              <i class="bi bi-caret-down-fill" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+              <div class="dropdown-menu">
+                <%= link_to "編集", edit_room_path(room.id), class: "dropdown-item" %>
+                <%= link_to "削除", room_path(room.id), method: :delete, data: { confirm: "ホテルを削除しますか？"}, class: "dropdown-item text-danger" %>
+              </div>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+</div>
+
+<% if flash[:notice] %>
+  <p class="notice"><%= flash[:notice] %></p>
+<% end %>
+
+</div>
